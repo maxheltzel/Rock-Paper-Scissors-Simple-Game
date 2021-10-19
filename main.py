@@ -1,25 +1,31 @@
 import random
-print("This is a simple random rpc generator created By Nabeel Arif and Max Heltzel")
+import turtle
+
+print("Type 'scissors' for scissors 'rock' for rock and 'paper' for paper")
 decisions = ["rock", "paper", "scissors"]
-opposition = decisions[random.randint(0, 2)]
-player = input("Hurry up and make a move dummy: ").lower()
 
+opposition = decisions[random.randint(0,2)]
+player = input("Hurry up and make a move: ")
+
+"""
+this function dictates if the two imputs are equal. If so, the output
+results in a tie
+"""
 print("Computer plays " + opposition)
-if player == "s":
-	if opposition == "p":
-		print("You Lost darling!")
-	else:
-		print("You Won Bruh")
-elif player == "r":
+if player == opposition:
+  print("Both players selected " + opposition + " It's a tie!")
+elif player == "scissors":
 	if opposition == "paper":
-		print("You Lost darling!")
+		print("You Won!")
 	else:
-		print("You Won Bruh!")
-elif player == "p":
-	if opposition == "scissor":
-		print("You Lost darling!")
+		print("You Lost darling")
+elif player == "rock":
+	if opposition == "paper":
+		print("You Lost darling")
 	else:
-		print("You Won Bruh!")
-
-
-#Add functionality for life points, if you lose three times, then your lifes go away and game ends
+		print("You won!")
+elif player == "paper":
+	if opposition == "scissors":
+		print("You Lost darling")
+	else:
+		print("You Won!")
