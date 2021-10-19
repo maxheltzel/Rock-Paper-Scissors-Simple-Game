@@ -1,0 +1,38 @@
+import random
+import turtle
+from tkinter import *
+
+import tkinter as tk
+from tkinter import simpledialog
+decisions = ["rock", "paper", "scissors"]
+opposition = decisions[random.randint(0,1)]
+print("Type 'scissors' for scissors 'rock' for rock and 'paper' for paper")
+
+
+
+ROOT = tk.Tk()
+
+ROOT.withdraw()
+
+player = simpledialog.askstring(title="EJ and Max's RPS Game",
+                                  prompt="Please type- Rock, Paper or Scissors:")
+
+if player == opposition:
+  print("Both players selected " + opposition + " It's a tie!")
+elif player == "scissors":
+	if opposition == "paper":
+		print("You Won!")
+	else:
+		print("You Lost darling")
+elif player == "rock":
+	if opposition == "paper":
+		print("You Lost darling")
+	else:
+		print("You won!")
+elif player == "paper":
+	if opposition == "scissors":
+		print("You Lost darling")
+	else:
+		print("You Won!")
+print("Computer plays " + opposition)
+
