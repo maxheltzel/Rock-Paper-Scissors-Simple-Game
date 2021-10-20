@@ -1,38 +1,57 @@
-import random
-import turtle
 from tkinter import *
+import random
 
-import tkinter as tk
-from tkinter import simpledialog
-decisions = ["rock", "paper", "scissors"]
-opposition = decisions[random.randint(0,1)]
-print("Type 'scissors' for scissors 'rock' for rock and 'paper' for paper")
+#pulled from https://www.pythonpool.com/rock-paper-scissors-python/
+win = Tk()
+win.geometry('400x400')
+win.title("EJ and Max's APCSP Simple Rock-Paper-Scissors Game. We are using the tkinter library and its functions")
+win.config(bg ='#e8e8e8')
+Label(win, text = 'Rock, Paper ,Scissors', bg= '#ffffff' ).pack()
 
 
+decisions = ['rock', 'paper', 'scissors']
+opposition = decisions[random.randint(0,2)]
 
-ROOT = tk.Tk()
+x = Label(win, text = 'Rock-Paper-Scissors- Type: Rock, Paper or Scissors in the top box',  bg= '#ffffff' ).place(x = 30,y=70)
+Entry(win, textvariable = decisions ).place(x=135 , y = 130)
 
-ROOT.withdraw()
 
-player = simpledialog.askstring(title="EJ and Max's RPS Game",
-                                  prompt="Please type- Rock, Paper or Scissors:")
+ALGO_Choice = StringVar()
 
-if player == opposition:
-  print("Both players selected " + opposition + " It's a tie!")
-elif player == "scissors":
-	if opposition == "paper":
-		print("You Won!")
-	else:
-		print("You Lost darling")
-elif player == "rock":
-	if opposition == "paper":
-		print("You Lost darling")
-	else:
-		print("You won!")
-elif player == "paper":
-	if opposition == "scissors":
-		print("You Lost darling")
-	else:
-		print("You Won!")
-print("Computer plays " + opposition)
+def play():
+#Tie command
+    if x == opposition:
+        ALGO_Choice.set('Its a Tie')
+#Paper command
+    elif x == 'paper' and opposition == 'rock':
+        ALGO_Choice.set('Computer selected Rock!!You Win!!')
+    elif x == 'paper' and opposition == 'scissors':
+        ALGO_Choice.set('Computer selected Scissors!!You Lose!!')
+#Rock command
+    elif x == 'rock' and opposition == 'paper':
+        ALGO_Choice.set('Computer selected Paper!! You Lose!!')
 
+    elif x == 'rock' and opposition == 'scissors':
+        ALGO_Choice.set('Computer selected Scissors!!You Win!!')
+#Scissors command
+    elif x == 'scissors' and opposition == 'rock':
+        ALGO_Choice.set('Computer selected Rock!!You Lose!!')
+
+    elif x == 'scissors' and opposition == 'paper':
+        ALGO_Choice.set('Computer selected Paper!!You Win!!')
+#Invalid Entry command
+    else:
+        ALGO_Choice.set('Invalid Entry- Choose: rock, paper, or scissors')
+
+def ResetGame_Exit0():
+    ALGO_Choice.set("")
+    decisions.set("")
+
+#########################################
+#Buttons and such...
+Label(win, textvariable=ALGO_Choice, width=40, bg= '#ffffff' ).place(x=50, y=250)
+Button(win, text='PLAY', padx=5, command=play).place(x=175, y=190)
+Button(win, text='RESET', padx=5, command=ResetGame_Exit0).place(x=175, y=320)
+
+
+win.mainloop()
